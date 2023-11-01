@@ -4,7 +4,7 @@
 
 **Read or watch:**
 
-* `Binary tree` (note the first line: `Not to be confused with B-tree`.) 
+* `Binary tree`(note the first line: `Not to be confused with B-tree`.) 
 
 * Data Structure and Algorithms - Tree
 
@@ -101,7 +101,7 @@ Please use the following data structures and types for binary trees. Don’t for
      struct binary_tree_s
 
 {
- 
+
     int n;
     struct binary_tree_s *parent;
     struct binary_tree_s *left;
