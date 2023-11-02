@@ -9,7 +9,7 @@ size_t binary_tree_depth(const struct binary_tree_s *tree)
 	size_t depth = 0;
 
 	if (tree == NULL)
-		return 0;
+		return (0);
 
 	while (tree->parent)
 	{
@@ -17,5 +17,5 @@ size_t binary_tree_depth(const struct binary_tree_s *tree)
 		depth++;
 	}
 
-	return depth;
+	return (depth);
 }
