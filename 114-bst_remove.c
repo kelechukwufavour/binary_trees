@@ -1,11 +1,5 @@
 #include "binary_trees.h"
 
-typedef struct bst_s {
-	struct bst_s *left;
-	struct bst_s *right;
-	int value;
-} bst_t;
-
 /**
  * bst_remove - Remove a node from a Binary Search Tree (BST).
  * @root: A pointer to the root node of the tree.
@@ -17,13 +11,11 @@ bst_t *bst_remove(bst_t *root, int value) {
 	if (root == NULL)
 		return root;
 
-	if (value < root->value) {
+	if (value < root->n) {
 		root->left = bst_remove(root->left, value);
-	} else if (value > root->value) {
+	} else if (value > root->n) {
 		root->right = bst_remove(root->right, value);
 	} else {
-		// Node with the value to be removed found
-
 		if (root->left == NULL) {
 			bst_t *temp = root->right;
 			free(root);
@@ -33,19 +25,12 @@ bst_t *bst_remove(bst_t *root, int value) {
 			free(root);
 			return temp;
 		}
-
-		// Node has two children, find in-order successor
 		bst_t *temp = root->right;
 		while (temp->left != NULL) {
 			temp = temp->left;
 		}
-
-		// Copy the in-order successor's value to this node
-		root->value = temp->value;
-
-		// Remove the in-order successor
-		root->right = bst_remove(root->right, temp->value);
+		root->n = temp->n;
+		root->right = bst_remove(root->right, temp->n);
 	}
-
 	return root;
 }
