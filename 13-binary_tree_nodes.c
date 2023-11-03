@@ -1,41 +1,22 @@
 #include "binary_trees.h"
 
 /**
- * preorder_traverse - traverse binary tree in pre-order fashion
- * @tree: pointer to the root node of the binary tree to traverse
- * @leaves: pointer to number of leaves of the binary tree
+ * binary_tree_nodes - counts the number of nodes (not leaves) in the tree.
  *
- * Return: Nothing
+ * @tree: root node.
+ * Return: the number of nodes that are not leaves
  */
 
-void preorder_traverse(const binary_tree_t *tree, size_t *leaves)
+size_t binary_tree_nodes(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return;
+	size_t counter = 0;
 
-	if (tree->left == NULL && tree->right == NULL)
-		*leaves += 1;
-
-	preorder_traverse(tree->left, leaves);
-	preorder_traverse(tree->right, leaves);
-}
-
-
-/**
- * binary_tree_leaves - counts the leaves in a binary tree
- * @tree: pointer to the root node of the tree to count the number of leaves
- *
- * Return: number of leaves in a binary tree or 0 if tree is NULL
- */
-
-size_t binary_tree_leaves(const binary_tree_t *tree)
-{
-	size_t leaves = 0;
-
-	if (tree == NULL)
+	if (!tree)
 		return (0);
 
-	preorder_traverse(tree, &leaves);
-
-	return (leaves);
+	counter += binary_tree_nodes(tree->left);
+	counter += binary_tree_nodes(tree->right);
+	if (!tree->left && !tree->right)
+		return (counter);
+	return (counter + 1);
 }
